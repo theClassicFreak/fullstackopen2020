@@ -1,4 +1,6 @@
 /testapp/
+/testbackend
+/heroku
 part1/courseinfo/node_modules
 part1/unicafe/node_modules
 part1/anecdotes/node_modules
@@ -6,4 +8,3 @@ part2/courseinfo/node_modules
 part2/phonebook/node_modules
 part2/countrydata/node_modules
 part2/countrydata/.env
-.ftpconfig
