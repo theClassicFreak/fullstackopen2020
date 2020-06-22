@@ -8,3 +8,6 @@ part2/courseinfo/node_modules
 part2/phonebook/node_modules
 part2/countrydata/node_modules
 part2/countrydata/.env
+part3/phonebook_backend/node_modules
+part3/phonebook_backend/.git
+part3/phonebook_backend/.gitignore

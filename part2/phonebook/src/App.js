@@ -90,7 +90,7 @@ const App = () => {
           })
           .catch(error => {
             console.log(error)
-            setErrorMessage(`${nameMatch.name} has already been deleted`)
+            setErrorMessage(`could not update ${nameMatch.name}`)
             setErrorClass('failure')
             setTimeout(() => {setErrorMessage(null)}, 5000)
           })
