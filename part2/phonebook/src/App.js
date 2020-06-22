@@ -65,7 +65,7 @@ const App = () => {
     let numberMatch = persons.find((person) => person.number === newNumber)
     if(nameMatch!==undefined && numberMatch!==undefined)
     {
-      setErrorMessage(`${nameMatch.name}, ${numberMatch.number} is already added to phonebook`)
+      setErrorMessage(`${nameMatch.name} are ${numberMatch.number} already added to phonebook`)
       setErrorClass('error')
       setTimeout(() => {setErrorMessage(null)}, 5000)
     }
