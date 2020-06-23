@@ -65,7 +65,7 @@ const App = () => {
     let numberMatch = persons.find((person) => person.number === newNumber)
     if(nameMatch!==undefined && numberMatch!==undefined)
     {
-      setErrorMessage(`${nameMatch.name} are ${numberMatch.number} already added to phonebook`)
+      setErrorMessage(`${nameMatch.name} or ${numberMatch.number} is already added to phonebook`)
       setErrorClass('error')
       setTimeout(() => {setErrorMessage(null)}, 5000)
     }
@@ -89,8 +89,7 @@ const App = () => {
             setTimeout(() => {setErrorMessage(null)}, 5000)
           })
           .catch(error => {
-            console.log(error)
-            setErrorMessage(`could not update ${nameMatch.name}`)
+            setErrorMessage(error.response.data.error)
             setErrorClass('failure')
             setTimeout(() => {setErrorMessage(null)}, 5000)
           })
@@ -105,6 +104,11 @@ const App = () => {
           setNewNumber('')
           setErrorMessage(newName +` has been added`)
           setErrorClass('success')
+          setTimeout(() => {setErrorMessage(null)}, 5000)
+        })
+        .catch(error =>{
+          setErrorMessage(error.response.data.error)
+          setErrorClass('failure')
           setTimeout(() => {setErrorMessage(null)}, 5000)
         })
     }

@@ -11,3 +11,4 @@ part2/countrydata/.env
 part3/phonebook_backend/node_modules
 part3/phonebook_backend/.git
 part3/phonebook_backend/.gitignore
+part3/phonebook_backend/build
