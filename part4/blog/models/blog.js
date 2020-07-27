@@ -11,10 +11,8 @@ const blogSchema = mongoose.Schema({
         required: true
     },
     author: {
-        type: String,
-        minlength: 1,
-        unique: false,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     url: {
         type: String,
