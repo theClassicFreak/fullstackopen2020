@@ -50,9 +50,7 @@ const App = () => {
             <h2>Blog Page</h2>
             <Notification message={errorMessage} errorClass={errorClass} />
             {user === null ? (
-                <div>
-                    {loginForm()}
-                    </div>
+                <div>{loginForm()}</div>
             ) : (
                 <div>
                     <p>
@@ -69,8 +67,16 @@ const App = () => {
                     <div>
                         {blogs
                             .filter((item) => item.user.username === user.username)
+                            .sort((a, b) => (a.likes < b.likes ? 1 : -1))
                             .map((blog) => (
-                                <Blog key={blog.id} blog={blog} />
+                                <Blog
+                                    key={blog.id}
+                                    blog={blog}
+                                    setBlogs={setBlogs}
+                                    blogService={blogService}
+                                    setErrorClass={setErrorClass}
+                                    setErrorMessage={setErrorMessage}
+                                />
                             ))}
                     </div>
                     {postForm()}

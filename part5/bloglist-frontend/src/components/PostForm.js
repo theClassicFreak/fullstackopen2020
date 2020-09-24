@@ -33,7 +33,7 @@ const PostForm = ({ postFormRef, user, setBlogs, blogService, setErrorClass, set
             setNewTitle('');
             setNewAuthor('');
             setNewURL('');
-            blogService.getAll().then((blogs) => setBlogs(blogs));
+            setBlogs(await blogService.getAll())
             setErrorMessage(`${result.title} has been posted by ${user.name}`);
             setErrorClass('success');
             setTimeout(() => {
