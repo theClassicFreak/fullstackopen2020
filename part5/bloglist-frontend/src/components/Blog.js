@@ -53,7 +53,7 @@ const Blog = ({ blog, blogService, setBlogs, setErrorClass, setErrorMessage }) =
   return (
     <div>
       {showExpandedView === true ? (
-        <div style={blogStyle}>
+        <div style={blogStyle} className='blogExpanded'>
           <p>
             {blog.title} {blog.author}
             <button onClick={toggleView}> Hide </button>
@@ -68,7 +68,7 @@ const Blog = ({ blog, blogService, setBlogs, setErrorClass, setErrorMessage }) =
           </p>
         </div>
       ) : (
-        <div style={blogStyle}>
+        <div style={blogStyle} className='blogDefault'>
           <p>
             {blog.title} {blog.author}
             <button onClick={toggleView}> View </button>
