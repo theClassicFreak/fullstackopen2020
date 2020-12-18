@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render, fireEvent } from '@testing-library/react'
+import { render, cleanup, fireEvent } from '@testing-library/react'
 import Blog from '../components/Blog'
 import blogService from '../services/blogs'
 
@@ -11,6 +11,8 @@ const blog = {
   likes: 100,
   user: 1234
 }
+
+afterEach(cleanup)
 
 test('renders default content', () => {
   const component = render(
@@ -37,7 +39,6 @@ test('renders expanded content on click', () => {
   const button = component.getByText('View')
   fireEvent.click(button)
   const div = component.container.querySelector('.blogExpanded')
-  component.debug()
   const verdict = (
     expect(div).toHaveTextContent('Test Title') &&
       expect(div).toHaveTextContent('Test Author') &&
