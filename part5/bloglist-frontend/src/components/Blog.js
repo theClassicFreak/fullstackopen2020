@@ -56,22 +56,22 @@ const Blog = ({ blog, blogService, setBlogs, setErrorClass, setErrorMessage }) =
         <div style={blogStyle} className='blogExpanded'>
           <p>
             {blog.title} {blog.author}
-            <button onClick={toggleView}> Hide </button>
+            <button id='hide-button' onClick={toggleView}> Hide </button>
           </p>
           <p>{blog.url}</p>
           <p>
-            {blog.likes} <button onClick={increaseLikes}> Like </button>{' '}
+            {blog.likes} <button id='like-button' onClick={increaseLikes}> Like </button>{' '}
           </p>
           <p>{blog.user.name}</p>
           <p>
-            <button onClick={deletePost}> Delete </button>
+            <button id='delete-button' onClick={deletePost}> Delete </button>
           </p>
         </div>
       ) : (
         <div style={blogStyle} className='blogDefault'>
           <p>
             {blog.title} {blog.author}
-            <button onClick={toggleView}> View </button>
+            <button id='view-button' onClick={toggleView}> View </button>
           </p>
         </div>
       )}

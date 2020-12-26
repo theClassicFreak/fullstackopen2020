@@ -54,22 +54,22 @@ const PostForm = ({ postFormRef, user, setBlogs, blogService, setErrorClass, set
         <div>
           <p>
                         Title
-            <input name="title" value={newTitle} onChange={handlePostChange} />
+            <input id='title' name="title" value={newTitle} onChange={handlePostChange} />
           </p>
         </div>
         <div>
           <p>
                         Author
-            <input name="author" value={newAuthor} onChange={handlePostChange} />
+            <input id='author' name="author" value={newAuthor} onChange={handlePostChange} />
           </p>
         </div>
         <div>
           <p>
                         URL
-            <input name="url" value={newURL} onChange={handlePostChange} />
+            <input id='url' name="url" value={newURL} onChange={handlePostChange} />
           </p>
         </div>
-        <button type="submit">Create</button>
+        <button id='submit-button' type="submit">Create</button>
       </form>
     </div>
   )

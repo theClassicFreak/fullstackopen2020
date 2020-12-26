@@ -14,7 +14,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypress run"    
   },
   "browserslist": {
     "production": [
@@ -31,6 +33,7 @@
   "proxy": "http://localhost:3001",
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0"
+    "@testing-library/react": "^9.5.0",
+    "cypress": "^6.2.0"
   }
 }

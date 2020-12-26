@@ -12,6 +12,7 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null)
   const [errorClass, setErrorClass] = useState('success')
   const postFormRef = useRef()
+
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs))
   }, [])

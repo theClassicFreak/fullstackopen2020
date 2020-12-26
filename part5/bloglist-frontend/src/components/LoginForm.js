@@ -5,6 +5,7 @@ const LoginForm = ({ setUser, blogService, setErrorClass, setErrorMessage }) => 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const handleLogin = async (event) => {
+    // let isSubscribed = true
     event.preventDefault()
     try {
       const user = await loginService.login({
@@ -28,6 +29,7 @@ const LoginForm = ({ setUser, blogService, setErrorClass, setErrorMessage }) => 
         setErrorMessage(null)
       }, 5000)
     }
+
   }
 
   return (
@@ -36,6 +38,7 @@ const LoginForm = ({ setUser, blogService, setErrorClass, setErrorMessage }) => 
         {' '}
                 username
         <input
+          id="username"
           type="text"
           value={username}
           name="Username"
@@ -46,13 +49,14 @@ const LoginForm = ({ setUser, blogService, setErrorClass, setErrorMessage }) => 
         {' '}
                 password
         <input
+          id="password"
           type="password"
           value={password}
           name="Password"
           onChange={({ target }) => setPassword(target.value)}
         />
       </div>
-      <button type="submit">login</button>
+      <button id="login-button" type="submit">login</button>
     </form>
   )
 }
