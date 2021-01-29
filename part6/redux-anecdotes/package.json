@@ -32,5 +32,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-devtools": "^4.10.1",
+    "redux-devtools-extension": "^2.13.8"
   }
 }
