@@ -1,20 +1,33 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+// import { useSelector, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { increaseVote} from '../reducers/anecdoteReducer'
 import { showNotification } from '../reducers/notificationReducer'
 
-const AnecdoteList = () => {
-  const anecdotes = useSelector(state => state.anecdotes.filter(a => a.content.includes(state.filter)))
-  const dispatch = useDispatch()
+const AnecdoteList = ({ anecdotes, filter, increaseVote, showNotification}) => {
+  // const anecdotes = useSelector(state => state.anecdotes.filter(a => a.content.includes(state.filter)))
+  // const dispatch = useDispatch()
+  const filteredAnecdotes = () => {
+    if (filter === "") {
+      return anecdotes
+        .sort((a, b) => (a.votes > b.votes ? -1 : 1))
+    }
+    else {
+      return anecdotes
+        .filter(a => a.content.includes(filter))
+        .sort((a, b) => (a.votes > b.votes ? -1 : 1))
+      }
+    }
   const vote = (anecdote) => {
-    dispatch(increaseVote(anecdote))
-    dispatch(showNotification(`you voted '${anecdote.content}'`, 10))
+    increaseVote(anecdote)
+    showNotification(`you voted '${anecdote.content}'`, 10)
   }
-
   return (
     <div>
       <h2>Anecdote List</h2>
-      {anecdotes.sort((a,b) => b.votes - a.votes).map(anecdote =>
+      {
+        filteredAnecdotes()
+        .map(anecdote => (
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
@@ -23,9 +36,22 @@ const AnecdoteList = () => {
             has {anecdote.votes} <button onClick={() => vote(anecdote)}>Votes</button>
           </div>
         </div>
-      )}
+      ))}
     </div>
   )
 }
 
-export default AnecdoteList
+// export default AnecdoteList
+
+const mapStateToProps = ({ anecdotes, filter }) => {
+  return {
+    anecdotes,
+    filter,
+  }
+}
+
+const ConnectedAnecdoteList = connect(mapStateToProps, {
+  increaseVote,
+  showNotification,
+})(AnecdoteList)
+export default ConnectedAnecdoteList

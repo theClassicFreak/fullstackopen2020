@@ -1,12 +1,13 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
 
-const Filter = () => {
-const dispatch = useDispatch()
+const Filter = ({setFilter}) => {
+// const dispatch = useDispatch()
 
 const handleChange = e => {
-  dispatch(setFilter(e.target.value))
+  setFilter(e.target.value)
 }
 const style = {
   marginBottom: 10
@@ -19,4 +20,5 @@ return (
 )
 }
 
-export default Filter
+const ConnectedFilter = connect(null, { setFilter })(Filter);
+export default ConnectedFilter;

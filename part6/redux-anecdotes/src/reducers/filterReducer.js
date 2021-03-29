@@ -5,11 +5,11 @@ export const setFilter = filter => {
   }
 }
 
-const reducer = (state = '', action) => {
+const filterReducer = (state = '', action) => {
   switch (action.type) {
     case 'FILTER': return action.data.filter
     default: return state
   }
 }
 
-export default reducer
+export default filterReducer
