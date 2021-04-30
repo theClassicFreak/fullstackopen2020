@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   Switch, Route, Link, useHistory, useRouteMatch
 } from "react-router-dom"
+import { useField } from './hooks'
 
 const Menu = () => {
   return (
@@ -17,9 +18,7 @@ const Notification = ({ notification }) => (
   <div>{notification}</div>
 )
 
-
 const AnecdoteList = ({ notification, anecdotes }) => {
-  console.log(notification)
   return (
   <div>
     <h2>Anecdotes</h2>
@@ -37,6 +36,7 @@ const AnecdoteList = ({ notification, anecdotes }) => {
 }
 
 const Anecdote = ({ anecdote }) => {
+  // console.log(anecdote)
   return (
     <div>
       <p>{anecdote.content}</p>
@@ -67,21 +67,31 @@ const Footer = () => (
 )
 
 const CreateNew = (props) => {
-  const [content, setContent] = useState('')
-  const [author, setAuthor] = useState('')
-  const [info, setInfo] = useState('')
+  // const [content, setContent] = useState('')
+  // const [author, setAuthor] = useState('')
+  // const [info, setInfo] = useState('')
+  const content = useField('text')
+  const author = useField('text')
+  const info = useField('text')
   const history = useHistory()
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
     props.addNew({
-      content,
-      author,
-      info,
+      content: content.value,
+      author: author.value,
+      info: info.value,
       votes: 0
     })
     history.push('/anecdotes')
+  }
+
+  const handleReset = (e) => {
+    e.preventDefault()
+    content.reset(e)
+    author.reset(e)
+    info.reset(e)
   }
 
   return (
@@ -90,17 +100,18 @@ const CreateNew = (props) => {
       <form onSubmit={handleSubmit}>
         <div>
           content
-          <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+          <input name='content' value={content.value} onChange={(e) => content.onChange(e)} />
         </div>
         <div>
           author
-          <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} />
+          <input name='author' value={author.value} onChange={(e) => author.onChange(e)} />
         </div>
         <div>
           url for more info
-          <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} />
+          <input name='info' value={info.value} onChange={(e)=> info.onChange(e)} />
         </div>
         <button>create</button>
+        <button onClick={handleReset}>reset</button>
       </form>
     </div>
   )
@@ -141,12 +152,10 @@ const App = () => {
 
   const vote = (id) => {
     const anecdote = anecdoteById(id)
-
     const voted = {
       ...anecdote,
       votes: anecdote.votes + 1
     }
-
     setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
   }
 
