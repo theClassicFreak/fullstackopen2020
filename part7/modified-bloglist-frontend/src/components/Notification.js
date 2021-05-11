@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 const Notification = ({ notification }) => {
   if ( !notification ) {
@@ -9,13 +10,20 @@ const Notification = ({ notification }) => {
     borderStyle: 'solid',
     borderRadius: 5,
     padding: 10,
-    color: notification.type === 'success' ? 'green' : 'red',
+    color: notification.verdict === 'success' ? 'green' : 'red',
     background: 'lightgrey'
   }
 
   return <div style={style}>
-    {notification.message}
+    {notification.content}
   </div>
 }
 
-export default Notification
+const mapStateToProps = (state) => {
+  return {
+    notification: state.notifications
+  }
+}
+
+const ConnectedNotification = connect(mapStateToProps)(Notification)
+export default ConnectedNotification
