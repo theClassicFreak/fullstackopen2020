@@ -24,9 +24,15 @@ const update = (blog) => {
   return request.then(response => response.data)
 }
 
+const like = (blog) => {
+  const likedBlog = { ...blog, likes: blog.likes + 1, user: blog.user.id }
+  const request = axios.put(`${baseUrl}/${blog.id}`, likedBlog, getConfig())
+  return request.then(response => response.data)
+}
+
 const remove = (id) => {
   const request = axios.delete(`${baseUrl}/${id}`, getConfig())
   return request.then(response => response.data)
 }
 
-export default { getAll, create, update, remove }
+export default { getAll, create, update, like, remove }

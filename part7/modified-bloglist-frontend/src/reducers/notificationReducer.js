@@ -15,7 +15,6 @@ export const hideNotification = () => {
 }
 
 const notificationReducer = (state = '', action) => {
-  console.log(state)
   switch(action.type) {
   case 'SHOW': {
     return action.data
