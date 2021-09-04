@@ -1,6 +1,4 @@
 import blogService from '../services/blogs'
-import loginService from '../services/login'
-import storage from '../utils/storage'
 
 export const handleLike = (blogToLike) => {
   return async dispatch => {
@@ -23,17 +21,7 @@ export const handleRemove = (id) => {
 }
 
 export const initializeBlogs = () => {
-  let username = 'user1'
-  let password = 'user1'
   return async dispatch => {
-    try {
-      const user = await loginService.login({
-        username, password
-      })
-      storage.saveUser(user)
-    } catch(exception) {
-      console.log('wrong username/password')
-    }
     const blogs = await blogService.getAll()
     dispatch({
       type: 'INIT_BLOGS',

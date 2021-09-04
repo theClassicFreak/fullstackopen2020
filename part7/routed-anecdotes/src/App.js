@@ -36,7 +36,6 @@ const AnecdoteList = ({ notification, anecdotes }) => {
 }
 
 const Anecdote = ({ anecdote }) => {
-  // console.log(anecdote)
   return (
     <div>
       <p>{anecdote.content}</p>
